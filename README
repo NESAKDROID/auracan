@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CanAura Trashcan Cleaning</title>
+<style>
+/* Global Styles */
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background: #f8f9fa;
+color: #111;
+}
+header {
+background: #00ff99;
+color: #000;
+padding: 20px;
+text-align: center;
+}
+header h1 {
+margin: 0;
+font-size: 2rem;
+}
+section {
+padding: 20px;
+max-width: 900px;
+margin: 0 auto;
+}
+h2 {
+text-align: center;
+color: #00ff99;
+}
+p {
+text-align: center;
+font-size: 1rem;
+line-height: 1.5;
+}
+
+/* Booking Form */
+form {
+display: flex;
+flex-direction: column;
+gap: 12px;
+max-width: 400px;
+margin: 20px auto;
+background: #e0e0e0;
+padding: 20px;
+border-radius: 10px;
+}
+input, textarea, select {
+padding: 10px;
+font-size: 1rem;
+border-radius: 6px;
+border: 1px solid #ccc;
+}
+button {
+background: #00ff99;
+color: #000;
+font-size: 1.1rem;
+padding: 10px;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+button:hover {
+opacity: 0.9;
+}
+
+/* Floating Call Button */
+.call-button {
+position: fixed;
+bottom: 20px;
+right: 20px;
+background: #00ff99;
+color: #000;
+padding: 15px 20px;
+border-radius: 50px;
+font-size: 1.2rem;
+text-decoration: none;
+z-index: 1000;
+box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Before & After Slider */
+.slider-container {
+position: relative;
+max-width: 600px;
+margin: 20px auto;
+overflow: hidden;
+border-radius: 10px;
+}
+.slider {
+display: flex;
+transition: transform 0.5s ease-in-out;
+}
+.slider img {
+width: 100%;
+flex-shrink: 0;
+}
+.prev, .next {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(0,255,153,0.8);
+color: #000;
+border: none;
+padding: 10px;
+font-size: 1.5rem;
+border-radius: 50%;
+cursor: pointer;
+z-index: 10;
+}
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Responsive */
+@media(max-width: 600px){
+header h1 { font-size: 1.5rem; }
+.call-button { font-size: 1rem; padding: 10px 15px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>CanAura Trashcan Cleaning</h1>
+<p>Before & After Cleaning Transformation — Fast, Affordable, Reliable</p>
+</header>
+
+<section>
+<h2>See the Difference!</h2>
+<div class="slider-container">
+<div class="slider">
+<img src="before1.jpg" alt="Before cleaning 1">
+<img src="after1.jpg" alt="After cleaning 1">
+<img src="before2.jpg" alt="Before cleaning 2">
+<img src="after2.jpg" alt="After cleaning 2">
+</div>
+<button class="prev">&#10094;</button>
+<button class="next">&#10095;</button>
+</div>
+</section>
+
+<section>
+<h2>Book Your Cleaning</h2>
+<form id="booking-form">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="tel" name="phone" placeholder="Phone Number" required>
+<input type="text" name="address" placeholder="Address / Location" required>
+<select name="service" required>
+<option value="">Select Service</option>
+<option value="1-can">1 Trash Can</option>
+<option value="2-can">2 Trash Cans</option>
+<option value="3-can">3 Trash Cans</option>
+</select>
+<textarea name="notes" placeholder="Special Notes (optional)"></textarea>
+<button type="submit">Book Now</button>
+</form>
+</section>
+
+<a class="call-button" href="tel:6789181773">Call 678-918-1773</a>
+
+<script>
+// Slider
+let slideIndex = 0;
+const slides = document.querySelectorAll('.slider img');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+const slider = document.querySelector('.slider');
+slider.style.transform = 'translateX(' + (-index * 100) + '%)';
+}
+
+document.querySelector('.next').addEventListener('click', () => {
+slideIndex = (slideIndex + 1) % totalSlides;
+showSlide(slideIndex);
+});
+
+document.querySelector('.prev').addEventListener('click', () => {
+slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+showSlide(slideIndex);
+});
+
+showSlide(slideIndex);
+
+// Booking Form Submit (just demo alert, replace with backend later)
+document.getElementById('booking-form').addEventListener('submit', function(e){
+e.preventDefault();
+alert("Thanks! Your cleaning request has been submitted. We'll contact you soon.");
+this.reset();
+});
+</script>
+
+</body>
+</html>
